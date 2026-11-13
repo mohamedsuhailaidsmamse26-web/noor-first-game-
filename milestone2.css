@@ -1,0 +1,117 @@
+/* Milestone 2 styles. Separate file so style.css (Milestone 1) is untouched. */
+:root {
+  --m2-bg: rgba(6, 12, 28, 0.78);
+  --m2-line: rgba(0, 200, 255, 0.35);
+  --m2-cyan: #00c8ff;
+  --m2-mint: #00ffd5;
+  --m2-text: #e6f1ff;
+  --m2-dim: #8fa6c9;
+  --m2-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.m2-hidden { display: none !important; }
+
+/* ---------- HUD (top right) ---------- */
+#m2hud {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  width: 176px;
+  display: flex; flex-direction: column; gap: 8px;
+  font-family: var(--m2-font); color: var(--m2-text);
+  pointer-events: none; z-index: 10;
+}
+.m2-card {
+  background: var(--m2-bg);
+  border: 1px solid var(--m2-line);
+  border-radius: 10px;
+  padding: 8px 12px;
+  backdrop-filter: blur(6px);
+}
+.m2-label { font-size: 12px; color: var(--m2-dim); }
+.m2-sub { display: block; font-size: 12px; color: var(--m2-mint); margin-top: 2px; }
+#scoreVal {
+  display: block; font-size: 30px; line-height: 1.1; font-weight: 800;
+  color: var(--m2-cyan); font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgba(0, 200, 255, 0.55);
+}
+#scoreVal.bump { animation: m2bump 0.25s ease-out; }
+.m2-row { display: flex; justify-content: space-between; font-size: 13px; margin-top: 4px; }
+.m2-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); overflow: hidden; margin-top: 4px; }
+.m2-bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--m2-mint), var(--m2-cyan)); transition: width 0.2s; }
+#tasks { list-style: none; margin: 4px 0 0; padding: 0; font-size: 12.5px; }
+#tasks li { display: flex; gap: 6px; align-items: baseline; margin-top: 4px; }
+#tasks .tick {
+  flex: none; width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--m2-dim); position: relative; top: 1px;
+}
+#tasks li.done { color: var(--m2-dim); text-decoration: line-through; }
+#tasks li.done .tick { background: var(--m2-mint); border-color: var(--m2-mint); }
+#tasks .n { margin-left: auto; color: var(--m2-dim); }
+#hudBtns { display: flex; gap: 8px; pointer-events: auto; }
+#hudBtns .m2-btn { flex: 1; }
+
+/* ---------- Objective banner (top center) ---------- */
+#objective {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  top: max(10px, env(safe-area-inset-top));
+  width: min(340px, 40vw);
+  display: flex; flex-direction: column; gap: 2px; text-align: center;
+  background: var(--m2-bg); border: 1px solid var(--m2-line); border-radius: 10px;
+  padding: 8px 12px; font-family: var(--m2-font); color: var(--m2-text);
+  pointer-events: none; z-index: 10;
+}
+#objective strong { font-size: 15px; color: var(--m2-cyan); }
+#objective span { font-size: 12.5px; color: var(--m2-dim); }
+
+/* ---------- Score popups ---------- */
+#popups { position: fixed; left: 50%; top: 30%; transform: translateX(-50%); pointer-events: none; z-index: 12; }
+.m2-pop {
+  position: absolute; left: 50%; white-space: nowrap;
+  font: 700 20px var(--m2-font); color: var(--m2-mint);
+  text-shadow: 0 0 12px rgba(0, 255, 213, 0.6);
+  animation: m2pop 1.2s ease-out forwards;
+}
+@keyframes m2pop { 0% { opacity: 0; transform: translate(-50%, 10px); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50px); } }
+@keyframes m2bump { 50% { transform: scale(1.15); } }
+
+/* ---------- Overlays ---------- */
+.m2-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow-y: auto;
+  background: radial-gradient(ellipse at 50% 30%, rgba(8, 20, 50, 0.82), rgba(3, 6, 16, 0.95));
+  font-family: var(--m2-font); color: var(--m2-text);
+}
+.m2-panel { max-width: 34rem; margin: auto; text-align: left; }
+.m2-panel.m2-narrow { max-width: 22rem; text-align: center; }
+.m2-year {
+  font-size: clamp(4rem, 16vw, 7.5rem); font-weight: 800; line-height: 1;
+  letter-spacing: -0.03em; color: var(--m2-cyan);
+  text-shadow: 0 0 30px rgba(0, 200, 255, 0.6), 0 0 80px rgba(58, 107, 255, 0.5);
+}
+.m2-panel h1 { font-size: clamp(1.4rem, 4.5vw, 2rem); margin: 0.4rem 0 1rem; }
+.m2-panel p { font-size: 1rem; line-height: 1.6; color: #c3d3ee; margin: 0 0 0.9rem; }
+.m2-actions { display: flex; gap: 10px; justify-content: center; margin-top: 1rem; }
+
+/* ---------- Buttons ---------- */
+.m2-btn {
+  font: 600 15px var(--m2-font); color: var(--m2-text);
+  background: rgba(0, 200, 255, 0.1); border: 1px solid var(--m2-cyan);
+  border-radius: 8px; padding: 11px 22px; cursor: pointer;
+}
+.m2-btn:hover { background: rgba(0, 200, 255, 0.22); }
+.m2-btn:focus-visible { outline: 3px solid var(--m2-mint); outline-offset: 2px; }
+.m2-primary { background: var(--m2-cyan); color: #04101f; }
+.m2-primary:hover { background: var(--m2-mint); }
+.m2-small { font-size: 13px; padding: 7px 10px; background: var(--m2-bg); }
+#startBtn { margin-top: 0.5rem; }
+
+/* ---------- Small screens ---------- */
+@media (max-height: 560px) { #taskCard { display: none; } }
+@media (max-width: 700px) {
+  #m2hud { width: 150px; }
+  #objective { top: 5.2rem; width: min(300px, 62vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .m2-pop, #scoreVal.bump { animation: none; }
+}
