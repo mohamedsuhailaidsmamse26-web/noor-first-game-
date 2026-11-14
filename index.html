@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  <title>SHADOW SURVIVOR</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="milestone2.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="hud">
+    <strong>SHADOW SURVIVOR</strong>
+    <small id="stateVal">READY</small>
+    <small>ZONE: <span id="zoneVal">MERIDIAN</span></small>
+    <small>HP: <span id="hpVal">100</span></small>
+    <small>SCORE: <span id="scoreVal">0</span></small>
+    <small>ENERGY: <span id="orbVal">0 / 6</span></small>
+  </div>
+
+  <div id="hint">Explore the city</div>
+
+  <div id="joy">
+    <div id="knob"></div>
+  </div>
+
+  <div id="btns">
+    <button id="runBtn">RUN</button>
+    <button id="jumpBtn">JUMP</button>
+  </div>
+
+  <div id="tasks"></div>
+  <div id="popups"></div>
+
+  <div id="intro">
+    <h1>SHADOW SURVIVOR</h1>
+    <p>THE LAST LIGHT OF MERIDIAN</p>
+    <button id="startBtn">START GAME</button>
+  </div>
+
+  <div id="pauseMenu">
+    <h2>PAUSED</h2>
+    <button id="resumeBtn">RESUME</button>
+    <button id="pauseRestartBtn">RESTART</button>
+    <p id="pauseControls">Explore. Survive. Discover.</p>
+  </div>
+
+  <button id="pauseBtn">Ⅱ</button>
+
+  <div id="objTitle"></div>
+  <div id="objHint"></div>
+
+  <button id="restartBtn">RESTART</button>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
